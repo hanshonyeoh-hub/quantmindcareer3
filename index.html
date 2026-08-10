@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuantMind｜事业人格深潜</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+:root{--bg:#050a2b;--bg2:#0b165f;--blue:#1829c8;--cyan:#43d8ff;--gold:#f4b91f;--text:#fff;--ink:#11183e;--muted:#6e7698;--line:#dce2fb}
+body{margin:0;font-family:Arial,"Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#050a2b 0,#091456 42%,#eef2ff 42%,#eef2ff 100%);color:#fff}
+button,input{font:inherit}.hidden{display:none!important}
+.wrap{width:min(1100px,calc(100% - 28px));margin:auto;padding:42px 0 80px}
+.hero{text-align:center;margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.28em;color:#75ddff;font-weight:800}
+.hero h1{font-size:clamp(40px,7vw,72px);margin:12px 0 10px}.hero p{max-width:780px;margin:auto;color:#bec9ef;line-height:1.85}
+.panel{background:#fff;color:var(--ink);border-radius:24px;padding:28px;box-shadow:0 18px 60px rgba(0,0,45,.25)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:7px}.field label{font-weight:800}
+.field input{height:52px;padding:0 14px;border:1px solid #d7def8;border-radius:12px;background:#fff}.full{grid-column:1/-1}
+.primary,.secondary{min-height:48px;padding:0 18px;border-radius:12px;font-weight:800;cursor:pointer}
+.primary{border:0;color:#fff;background:linear-gradient(90deg,#07135d,#1c32d8)}.secondary{border:1px solid #ccd5ff;color:#11185e;background:#f4f6ff}
+.note{margin-top:16px;padding:13px 15px;border-radius:12px;background:#f7f9ff;color:#707797;line-height:1.7;font-size:13px}
+.top{display:flex;justify-content:space-between;gap:14px}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef2ff;color:#1424c8;font-size:12px;font-weight:800}
+.progress-track{height:9px;background:#edf0fa;border-radius:99px;overflow:hidden;margin:20px 0}.progress{height:100%;background:linear-gradient(90deg,#1727c9,#17a1f8);width:0}
+.question-card{padding:26px;border:1px solid #e0e5f8;border-radius:18px;background:#fbfcff;min-height:350px}
+.question{font-size:clamp(22px,4vw,32px);font-weight:800;line-height:1.5;margin:0 0 24px}.answers{display:grid;gap:10px}
+.answer{display:flex;align-items:center;gap:12px;text-align:left;padding:13px 14px;border:1px solid #dfe5f8;border-radius:12px;background:#fff;color:#252b55;cursor:pointer}
+.answer.selected{border-color:#172bd3;background:#eef2ff;color:#0f1d91}.dot{width:18px;height:18px;border:2px solid #aab3d6;border-radius:50%}.answer.selected .dot{border:5px solid #172bd3}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.result-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+#report{background:#fff;color:#11183e;border:2px solid #08135f;border-radius:24px;overflow:hidden;max-width:1024px;margin:auto}
+.report-head{padding:20px 28px;color:#fff;background:linear-gradient(90deg,#06115c,#0e1d83);display:flex;justify-content:space-between;align-items:center}
+.report-head h2{margin:0}.report-body{padding:18px}
+.profile{display:grid;grid-template-columns:210px 1fr 1.25fr;gap:18px;align-items:center}
+.avatar{width:180px;height:180px;border:3px solid #1424c8;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:#eaf0ff;color:#1424c8;font-size:70px;font-weight:900}
+.avatar img{width:100%;height:100%;object-fit:cover}.identity h1{font-size:44px;margin:5px 0 12px;color:#08135f}.identity p{margin:7px 0}
+.quote{padding:22px;border-radius:16px;color:#fff;background:linear-gradient(135deg,#07135d,#0a1d7a)}.quote h3{margin:0 0 10px;color:#ffc43d}.quote p{font-size:20px;line-height:1.65;margin:0}
+.section{margin-top:14px;border:1px solid #cfd7ff;border-radius:14px;padding:16px}.section-title{display:inline-block;margin:-16px 0 14px -16px;padding:8px 18px;border-radius:12px 0 12px 0;background:linear-gradient(90deg,#09145f,#1729c7);color:#fff;font-weight:900}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mini h4{color:#1121b7;margin:0 0 9px}.mini ul{padding-left:19px;margin:0;line-height:1.75;font-size:14px}
+.metric{display:grid;grid-template-columns:150px 1fr 50px;gap:10px;align-items:center;margin:12px 0}.metric-track{height:10px;background:#eef0fb;border-radius:99px;overflow:hidden}.metric-fill{height:100%;background:linear-gradient(90deg,#1528cf,#17a3fa)}
+.disc{display:grid;grid-template-columns:32px 1fr 50px;gap:10px;align-items:center;margin:10px 0}.D{background:#e72828}.I{background:#f5a91a}.S{background:#29a84a}.C{background:#2466d7}
+.manual{padding:12px;border-radius:12px;background:#f7f9ff}.manual h4{margin:0 0 8px}.manual ul{margin:0;padding-left:19px;line-height:1.75}
+.footer{margin-top:14px;padding:15px;text-align:center;background:#07135d;color:#fff;font-size:13px}
+@media(max-width:850px){.grid,.profile,.cols2,.cols3{grid-template-columns:1fr}.top{flex-direction:column}.avatar{margin:auto}.identity{text-align:center}.metric{grid-template-columns:120px 1fr 45px}}
+@media print{body{background:#fff}.hero,#intro,#test,.result-actions{display:none!important}.wrap{width:100%;padding:0}.panel{box-shadow:none;padding:0}#result{display:block!important}#report{border:0;max-width:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div class="eyebrow">QUANTMIND · CAREER PERSONALITY DEEP DIVE</div>
+  <h1>QuantMind｜事业人格深潜</h1>
+  <p>让本人更了解自己，也让 Leader 更快知道：这个人该怎样带、怎样沟通、怎样激励、什么时候会掉状态。</p>
+</header>
+
+<section id="intro" class="panel">
+  <span class="tag">STEP 1</span>
+  <h2>建立事业人格档案</h2>
+  <p style="color:#697095">原创 MBTI 四维题目 + DISC 行为测试，共 40 题快速版。确认 GitHub 稳定后可再升级回 88 题完整版。</p>
+  <form id="form" class="grid">
+    <div class="field"><label>姓名</label><input id="name" required placeholder="请输入姓名"></div>
+    <div class="field"><label>出生日期</label><input id="birth" type="date" required></div>
+    <div class="field full"><label>上传头像（选填）</label><input id="photo" type="file" accept="image/*"></div>
+    <button class="primary full" type="submit">开始测试</button>
+  </form>
+  <div class="note">此版本完全不依赖外部 JavaScript CDN，专门为 GitHub Pages 稳定运行重做。MBTI 题目为原创四维测评，不复制官方题库。</div>
+</section>
+
+<section id="test" class="panel hidden">
+  <div class="top"><div><span id="category" class="tag"></span><h2 id="testTitle"></h2></div><div><strong id="num" style="font-size:28px;color:#1424c8">1</strong> / <span id="total">40</span></div></div>
+  <div class="progress-track"><div id="progress" class="progress"></div></div>
+  <div class="question-card">
+    <p id="question" class="question"></p>
+    <div class="answers">
+      <button type="button" class="answer" data-v="1"><span class="dot"></span>非常不同意</button>
+      <button type="button" class="answer" data-v="2"><span class="dot"></span>不同意</button>
+      <button type="button" class="answer" data-v="3"><span class="dot"></span>一般</button>
+      <button type="button" class="answer" data-v="4"><span class="dot"></span>同意</button>
+      <button type="button" class="answer" data-v="5"><span class="dot"></span>非常同意</button>
+    </div>
+  </div>
+  <div class="actions"><button type="button" id="prev" class="secondary">上一题</button><button type="button" id="next" class="primary" disabled>下一题</button></div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="result-actions">
+    <button id="saveImage" class="primary">生成图片报告</button>
+    <button id="printBtn" class="secondary">打印 / PDF</button>
+    <button id="restart" class="secondary">重新测试</button>
+  </div>
+  <div id="report">
+    <div class="report-head"><h2>QuantMind · AI 事业人格分析报告</h2><span>Leader Manual × Self Manual</span></div>
+    <div class="report-body">
+      <div class="profile">
+        <div id="avatar" class="avatar">Q</div>
+        <div class="identity"><h1 id="rName"></h1><p>MBTI：<b id="rMbti"></b></p><p>DISC：<b id="rDisc"></b></p><p>生命数字：<b id="rLife"></b></p><p>星座：<b id="rZodiac"></b></p></div>
+        <div class="quote"><h3>一句话看懂他</h3><p id="oneLine"></p></div>
+      </div>
+
+      <div class="cols2">
+        <div class="section"><div class="section-title">DISC 行为能量</div><div id="discBars"></div><p id="discText"></p></div>
+        <div class="section"><div class="section-title">MBTI 四维倾向</div><div id="mbtiBars"></div></div>
+      </div>
+
+      <div class="section"><div class="section-title">Career DNA｜事业能力图谱</div><div id="dna"></div></div>
+
+      <div class="section">
+        <div class="section-title">Leader Manual｜怎样带这个人</div>
+        <div class="cols3">
+          <div class="manual"><h4>怎样给目标</h4><ul id="goal"></ul></div>
+          <div class="manual"><h4>怎样沟通</h4><ul id="comm"></ul></div>
+          <div class="manual"><h4>怎样激励</h4><ul id="motivate"></ul></div>
+          <div class="manual"><h4>怎样批评</h4><ul id="feedback"></ul></div>
+          <div class="manual"><h4>掉状态的信号</h4><ul id="warning"></ul></div>
+          <div class="manual"><h4>管理禁区</h4><ul id="dont"></ul></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Self Manual｜更了解自己</div>
+        <div class="cols3">
+          <div class="manual"><h4>我最需要什么</h4><ul id="needs"></ul></div>
+          <div class="manual"><h4>我应该放大的优势</h4><ul id="power"></ul></div>
+          <div class="manual"><h4>我要警惕什么</h4><ul id="blind"></ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">QuantMind · Career Personality Deep Dive</div>
+  </div>
+</section>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const mbti=[
+["E","在陌生团队中，我通常会主动开始交流。"],["I","长时间社交后，我需要独处恢复。"],
+["E","讨论时，我倾向边说边整理想法。"],["I","我通常想清楚后才表达。"],
+["E","认识新的人通常会让我有能量。"],["I","我更享受少数人的深度交流。"],
+["S","我更相信实际发生和验证过的事情。"],["N","我容易从线索看到未来可能性。"],
+["S","学习新东西时，我喜欢明确步骤。"],["N","学习新东西时，我更想先理解整体概念。"],
+["S","我会留意现实细节和实际限制。"],["N","我会自然寻找事情背后的模式。"],
+["T","重要决定时，我优先考虑逻辑和结果。"],["F","重要决定时，我会明显考虑人的感受。"],
+["T","即使不好听，我也更重视反馈是否真实。"],["F","我认为反馈方式和内容一样重要。"],
+["T","争论时，我更关注观点是否成立。"],["F","争论时，我也很在意关系有没有被破坏。"],
+["J","我喜欢提前计划并知道下一步。"],["P","我喜欢保留弹性，不太早定案。"],
+["J","计划突然改变会消耗我的状态。"],["P","临场变化常能激发我的反应。"],
+["J","把事情完成并关闭会让我安心。"],["P","我喜欢保留多个可能性。"]
+].map(x=>({type:"MBTI",pole:x[0],text:x[1]}));
+const disc=[
+["D","我喜欢掌握方向并推动事情。"],["D","竞争会明显激发我的表现。"],["D","别人动作太慢时，我容易不耐烦。"],["D","我愿意承担高压力和结果责任。"],
+["I","我容易通过表达影响别人。"],["I","认可与回应会提升我的动力。"],["I","我喜欢有互动和变化的工作。"],["I","我通常能快速拉近与陌生人的距离。"],
+["S","我重视稳定、信任和长期合作。"],["S","别人需要时，我愿意耐心支持。"],["S","突然的大变化会让我不舒服。"],["S","冲突时，我会先尝试缓和关系。"],
+["C","资料不足时，我不会轻易下结论。"],["C","我会主动检查细节和风险。"],["C","我重视标准、准确和专业。"],["C","我不喜欢模糊或反复改变的要求。"]
+].map(x=>({type:"DISC",pole:x[0],text:x[1]}));
+const questions=mbti.concat(disc), answers=new Array(questions.length).fill(null);
+let index=0, profile={};
+const opp={E:"I",I:"E",S:"N",N:"S",T:"F",F:"T",J:"P",P:"J"};
+const mbtiNames={ENTJ:"战略统帅型",ENTP:"创新开拓型",INTJ:"战略规划型",INTP:"逻辑探索型",ESTJ:"务实管理型",ESTP:"机会行动型",ISTJ:"稳健执行型",ISTP:"问题解决型",ENFJ:"影响领导型",ENFP:"愿景激励型",INFJ:"洞察引导型",INFP:"价值理想型",ESFJ:"关系协调型",ESFP:"人际推动型",ISFJ:"稳定支持型",ISFP:"自主体验型"};
+
+$("form").addEventListener("submit",function(e){
+  e.preventDefault();
+  profile={name:$("name").value.trim(),birth:$("birth").value,photo:null};
+  const file=$("photo").files[0];
+  if(file){const reader=new FileReader();reader.onload=function(ev){profile.photo=ev.target.result;start()};reader.readAsDataURL(file)}else start();
+});
+function start(){$("intro").classList.add("hidden");$("test").classList.remove("hidden");render()}
+document.querySelectorAll(".answer").forEach(function(btn){btn.addEventListener("click",function(){answers[index]=Number(btn.dataset.v);render()})});
+$("prev").addEventListener("click",function(){if(index>0){index--;render()}});
+$("next").addEventListener("click",function(){if(answers[index]===null)return;if(index<questions.length-1){index++;render()}else finish()});
+$("restart").addEventListener("click",function(){location.reload()});
+$("printBtn").addEventListener("click",function(){window.print()});
+
+function render(){
+  const q=questions[index];
+  $("category").textContent=q.type==="MBTI"?"MBTI STYLE":"DISC";
+  $("testTitle").textContent=q.type==="MBTI"?"人格认知偏好":"行为风格";
+  $("question").textContent=q.text;$("num").textContent=index+1;$("total").textContent=questions.length;
+  $("progress").style.width=((index+1)/questions.length*100)+"%";
+  document.querySelectorAll(".answer").forEach(function(btn){btn.classList.toggle("selected",Number(btn.dataset.v)===answers[index])});
+  $("prev").disabled=index===0;$("next").disabled=answers[index]===null;$("next").textContent=index===questions.length-1?"生成报告":"下一题";
+}
+function finish(){
+  const m={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0},d={D:0,I:0,S:0,C:0};
+  questions.forEach(function(q,i){const v=answers[i]||3;if(q.type==="MBTI"){m[q.pole]+=v;m[opp[q.pole]]+=6-v}else d[q.pole]+=v});
+  const type=(m.E>=m.I?"E":"I")+(m.S>=m.N?"S":"N")+(m.T>=m.F?"T":"F")+(m.J>=m.P?"J":"P");
+  const sorted=Object.entries(d).sort((a,b)=>b[1]-a[1]),discType=sorted[0][1]-sorted[1][1]<=3?sorted[0][0]+sorted[1][0]:sorted[0][0];
+  build({m,d,type,discType});
+  $("test").classList.add("hidden");$("result").classList.remove("hidden");window.scrollTo(0,0);
+}
+function percentage(a,b){return Math.round(a/(a+b)*100)}
+function normalize(v,min,max){return Math.max(0,Math.min(100,Math.round((v-min)/(max-min)*100)))}
+function li(x){return "<li>"+x+"</li>"}
+function build(r){
+  const date=new Date(profile.birth+"T00:00:00"),z=zodiac(date.getMonth()+1,date.getDate()),life=lifePath(profile.birth);
+  $("rName").textContent=profile.name;$("rMbti").textContent=r.type+"（"+(mbtiNames[r.type]||"人格类型")+"）";$("rDisc").textContent=r.discType;$("rLife").textContent=life+"号人";$("rZodiac").textContent=z;
+  if(profile.photo)$("avatar").innerHTML='<img src="'+profile.photo+'" alt="avatar">';else $("avatar").textContent=(profile.name||"Q").slice(0,1).toUpperCase();
+  const primary=Object.entries(r.d).sort((a,b)=>b[1]-a[1])[0][0];
+  $("oneLine").textContent=primary==="D"?"目标感强、喜欢掌握方向；最适合用结果、授权和挑战来带。":primary==="I"?"影响力和互动需求高；被看见、被认可时容易发挥最好。":primary==="S"?"重视信任、稳定和长期合作；安全感建立后会非常可靠。":"重视逻辑、标准和专业；给清楚资料和规则会发挥最好。";
+  const maxD=Math.max(...Object.values(r.d));
+  $("discBars").innerHTML=Object.entries(r.d).map(([k,v])=>'<div class="disc"><b>'+k+'</b><div class="metric-track"><div class="'+k+'" style="height:100%;width:'+Math.round(v/maxD*100)+'%"></div></div><span>'+v+'</span></div>').join("");
+  $("discText").textContent="主要行为风格："+primary+"；第二高维度："+Object.entries(r.d).sort((a,b)=>b[1]-a[1])[1][0]+"。";
+  [["E","I"],["S","N"],["T","F"],["J","P"]].forEach(()=>{});
+  $("mbtiBars").innerHTML=[["E","I"],["S","N"],["T","F"],["J","P"]].map(([a,b])=>{const p=percentage(r.m[a],r.m[b]);return metric(a+" "+p+"% / "+b+" "+(100-p)+"%",p)}).join("");
+  const D=normalize(r.d.D,4,20),I=normalize(r.d.I,4,20),S=normalize(r.d.S,4,20),C=normalize(r.d.C,4,20),E=percentage(r.m.E,r.m.I),N=percentage(r.m.N,r.m.S),T=percentage(r.m.T,r.m.F),J=percentage(r.m.J,r.m.P);
+  const dna={"Leadership 领导驱动":Math.round(D*.55+E*.15+T*.15+J*.15),"Execution 执行推进":Math.round(D*.35+J*.35+C*.15+T*.15),"Influence 影响沟通":Math.round(I*.6+E*.3+(100-T)*.1),"Strategy 战略思考":Math.round(N*.55+T*.25+J*.2),"Stability 稳定持续":Math.round(S*.6+J*.2+C*.2),"Precision 细节标准":Math.round(C*.65+J*.2+T*.15),"Autonomy 自主需求":Math.round(D*.45+N*.25+T*.15+(100-S)*.15),"Risk 风险倾向":Math.round(D*.4+N*.25+E*.15+(100-C)*.2)};
+  $("dna").innerHTML=Object.entries(dna).map(([k,v])=>metric(k,v)).join("");
+  const leader=manual(primary,r.type);
+  ["goal","comm","motivate","feedback","warning","dont"].forEach(k=>$(k).innerHTML=leader[k].map(li).join(""));
+  const self=selfManual(primary,r.type);
+  $("needs").innerHTML=self.needs.map(li).join("");$("power").innerHTML=self.power.map(li).join("");$("blind").innerHTML=self.blind.map(li).join("");
+}
+function metric(label,p){return '<div class="metric"><b>'+label+'</b><div class="metric-track"><div class="metric-fill" style="width:'+p+'%"></div></div><b>'+p+'</b></div>'}
+function manual(p,t){
+  const map={
+  D:{goal:["给明确数字、期限和结果标准","说明挑战和权限","少做微观管理"],comm:["直接讲重点","用事实和结果沟通","不要绕圈"],motivate:["更大目标","自主权","清楚认可"],feedback:["一对一直接反馈","讲差距与方案","不要公开压制"],warning:["明显不耐烦","开始自己接手所有事","对低效率容忍骤降"],dont:["反复改变规则","限制权限却要求结果","长期否定贡献"]},
+  I:{goal:["让目标有影响力和舞台感","设置阶段反馈","让他看到人与结果"],comm:["互动式沟通","及时回应","重要事情当面讲"],motivate:["公开认可","新机会","让他发挥影响力"],feedback:["先确认贡献","具体讲改善点","不要公开让他难堪"],warning:["不再主动分享","互动明显减少","对认可异常敏感"],dont:["长期冷处理","只给任务不给反馈","完全限制表达空间"]},
+  S:{goal:["目标稳定清楚","提前说明变化","给合理适应期"],comm:["先建立信任","语气稳定","避免突然高压"],motivate:["长期成长","团队归属","持续感谢"],feedback:["私下一对一","给时间消化","说明支持方案"],warning:["沉默配合但不主动","抗拒变化","与团队拉开距离"],dont:["频繁突变","用威胁推动","破坏长期信任"]},
+  C:{goal:["给标准、数据和质量要求","说明判断依据","定义完成标准"],comm:["用事实和逻辑","资料要完整","给思考时间"],motivate:["专业认可","复杂问题","质量成果被看见"],feedback:["提供例子证据","允许解释逻辑","聚焦标准差距"],warning:["反复检查","迟迟不决定","对错误异常敏感"],dont:["没有依据地批评","要求模糊","频繁改变标准"]}
+  };return map[p]
+}
+function selfManual(p,t){return{
+ needs:p==="D"?["自主空间","挑战和成长速度","对结果负责的权限"]:p==="I"?["互动和影响空间","贡献被看见","变化和表达机会"]:p==="S"?["稳定信任","可预期节奏","长期归属"]:["清楚标准","专业自主","完整信息"],
+ power:[t.includes("N")?"把趋势判断转成布局":"把现实经验转成执行",t.includes("T")?"强化逻辑决策":"发挥同理与连接",t.includes("J")?"把规划变成系统":"把弹性用于创新"],
+ blind:[p==="D"?"别把速度变成对人的不耐烦":p==="I"?"别让认可决定自我价值":p==="S"?"别为了稳定回避必要改变":"别让完美主义阻碍行动",t.includes("T")?"记得结果之外还有人的感受":"不要为了关系回避困难决定",t.includes("J")?"计划变化时练习弹性":"避免选择太多导致不收尾"]
+}}
+function lifePath(s){let n=s.replaceAll("-","").split("").reduce((a,b)=>a+Number(b),0);while(n>9&&![11,22,33].includes(n))n=String(n).split("").reduce((a,b)=>a+Number(b),0);return n}
+function zodiac(m,d){if((m===12&&d>=22)||(m===1&&d<=19))return"摩羯座";if((m===1&&d>=20)||(m===2&&d<=18))return"水瓶座";if((m===2&&d>=19)||(m===3&&d<=20))return"双鱼座";if((m===3&&d>=21)||(m===4&&d<=19))return"白羊座";if((m===4&&d>=20)||(m===5&&d<=20))return"金牛座";if((m===5&&d>=21)||(m===6&&d<=21))return"双子座";if((m===6&&d>=22)||(m===7&&d<=22))return"巨蟹座";if((m===7&&d>=23)||(m===8&&d<=22))return"狮子座";if((m===8&&d>=23)||(m===9&&d<=22))return"处女座";if((m===9&&d>=23)||(m===10&&d<=23))return"天秤座";if((m===10&&d>=24)||(m===11&&d<=22))return"天蝎座";return"射手座"}
+
+$("saveImage").addEventListener("click",function(){
+  alert("这个 GitHub 稳定版先用「打印 / PDF」保存完整报告。确认页面稳定后，我再把不依赖 CDN 的 PNG 导出加入下一版。");
+});
+})();
+</script>
+</body>
+</html>
